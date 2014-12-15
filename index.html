@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Draggable - Default functionality</title>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <script src="jquery-1.10.2.js"></script>
+  <script src="jquery-ui.js"></script>
+  <link rel="stylesheet" href="site.css">
+  <style>
+  </style>
+  <script>
+
+  var resetAll = function () {
+    var bgcolors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'other'];
+    var textcolors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'other'];
+    for (var i = 7; i>0; i--) {
+      var bgcolorindex = Math.floor (Math.random()*(i+1));
+      var textcolorindex = Math.floor (Math.random()*(i+1));
+
+      var newclass = "bg" + bgcolors[bgcolorindex];
+      var newtext = textcolors[textcolorindex];
+
+      bgcolors.splice (bgcolorindex,1);
+      textcolors.splice (textcolorindex,1);
+
+      $("#drop" + i).attr ("class", "droppable ui-widget-header ui-droppable " + newclass)
+        .attr ("data-color", newtext)
+        .html ("<p>" + newtext + "</p>");
+    }
+
+    $("#drop0").attr ("class", "droppable ui-widget-header ui-droppable bg" + bgcolors[0])
+      .attr ("data-color", bgcolors[0])
+      .html ("<p>" + textcolors[0] + "</p>");
+
+    $("#dragBlock").css ({top: 10});
+  };
+
+  var checkDrop = function ($drop, $drag) {
+    //var dropColor = $drop.attr('id').replace ("drop", "").toLowerCase();
+    console.log ("Class = " + $drag.attr("class"));
+
+    //var dropColor = $drag.attr("class").split (" ")
+    //  .filter (function(i) { console.log("checkdrag  " + i); return (i.substr(0,2)=="bg")})[0]
+    //  .substr(2,100);
+    var dropColor = $drag.attr("data-color");
+    
+    //var blockColor = $drag.attr('id').replace ("block", "").toLowerCase();
+    //var blockColor = $drop.attr("class").split (" ")
+    //  .filter (function(i) { console.log("check  " + i); return (i.substr(0,2)=="bg")})[0]
+    //  .substr(2,100);
+    var blockColor = $drop.attr("data-color");
+
+    console.log ("Block color = " + blockColor);
+    console.log ("Drop color = " + dropColor);
+    alert (dropColor === blockColor ? "You got it!" : "Wrong!");
+    resetAll();
+  };
+
+  var blockStartPos = [];
+
+  $(function() {
+    blockStartPos = [$("#dragBlock").x, $("#dragBlock").y];
+    $( ".block" ).draggable();
+    $( ".droppable" ).droppable({
+      hoverClass: "dropHover",
+      drop: function( event, ui ) {
+        checkDrop ($(this), $("#dragBlock"));
+      },
+    });
+
+    resetAll();
+  });
+  </script>
+</head>
+<body>
+
+<div class='score'></div>
+
+<div class='blockPanel'>
+  <div id='dragBlock' class="bgBlue dragBlock block ui-widget-content" data-color="green"></div>
+ </div>
+
+<div class='dropPanel'> 
+  <div id="drop0" class="droppable ui-widget-header">
+    <p>RED</p>
+  </div>
+
+  <div id="drop1" class="droppable ui-widget-header">
+    <p>BLUE</p>
+  </div>
+
+  <div id="drop2" class="droppable ui-widget-header">
+    <p>GREEN</p>
+  </div>
+
+  <div id="drop3" class="droppable ui-widget-header">
+    <p>BLACK</p>
+  </div>
+
+  <div id="drop4" class="droppable ui-widget-header">
+    <p>BLACK</p>
+  </div>
+
+  <div id="drop5" class="droppable ui-widget-header">
+    <p>BLACK</p>
+  </div>
+
+  <div id="drop6" class="droppable ui-widget-header">
+    <p>BLACK</p>
+  </div>
+
+  <div id="drop7" class="droppable ui-widget-header">
+    <p>BLACK</p>
+  </div>
+
+</div>
+
+</body>
+</html>
