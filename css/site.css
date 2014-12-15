@@ -1,0 +1,83 @@
+.blockPanel {
+	width: 100%;
+	padding: 10px 0px 10px 0px;
+}
+
+.block {
+	width: 100px; 
+	height: 30px; 
+	padding: 0.5em; 
+	margin: 10px auto 10px auto; 
+	border-radius: 8px;
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+.dragBlock {
+	border-color: #cc0000;
+	background-color: #ff0000;
+} 
+
+
+.dropPanel {
+	width: 100%;
+	margin: 20px 0px 0px 0px;
+	background-color: #ccc;
+}
+
+.droppable { 
+	width: 44%;
+	height: 75px; 
+	xpadding: 0.5em; 
+	float: left; 
+	margin: 10px 2% 10px 2%; 
+	border: 2px dashed #fff;
+	border-radius: 32px;
+	text-align: center;
+}
+
+.droppable p {
+	margin: 15px auto 15px auto;
+	color: #fff;
+	font-weight: normal;
+	font-size: 2.0em;
+}
+
+.bgred {
+	background-color: #800000;
+}
+
+.bgorange {
+	background-color: #808000;
+}
+
+.bgyellow {
+	background-color: #800080}
+
+.bggreen {
+	background-color: #008000;
+}
+
+.bgblue {
+	background-color: #000080;
+}
+
+.bgindigo {
+	background-color: #008080;
+}
+
+.bgviolet {
+	background-color: #808080;
+}
+
+.bgblack {
+	background-color: #000000;
+	color: #fff;
+}
+
+.dropHover {
+	xbackground-color: #fff;
+	color: #000;
+	font-weight: bold;
+	opacity: 0.5;
+}

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>jQuery UI Draggable - Default functionality</title>
-  <link rel="stylesheet" href="jquery-ui.css">
-  <script src="jquery-1.10.2.js"></script>
-  <script src="jquery-ui.js"></script>
-  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="libs/jquery-ui.css">
+  <script src="libs/jquery-1.10.2.js"></script>
+  <script src="libs/jquery-ui.js"></script>
+  <link rel="stylesheet" href="css/site.css">
   <style>
   </style>
   <script>
@@ -14,6 +14,15 @@
   var resetAll = function () {
     var bgcolors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'other'];
     var textcolors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'other'];
+
+    var sourcecolorindex = Math.floor (Math.random()*(8));
+    var sourcecolor = bgcolors[sourcecolorindex];
+    $("#dragBlock").attr("class", "bg" + sourcecolor + " dragBlock block ui-widget-content")
+      .attr ("data-color", sourcecolor)
+      .html ("<p>" + sourcecolor + "</p>");
+    
+    $("#dragBlock").css ({top: 10, left: 0});
+
     for (var i = 7; i>0; i--) {
       var bgcolorindex = Math.floor (Math.random()*(i+1));
       var textcolorindex = Math.floor (Math.random()*(i+1));
@@ -33,7 +42,6 @@
       .attr ("data-color", bgcolors[0])
       .html ("<p>" + textcolors[0] + "</p>");
 
-    $("#dragBlock").css ({top: 10});
   };
 
   var checkDrop = function ($drop, $drag) {
@@ -54,7 +62,9 @@
     console.log ("Block color = " + blockColor);
     console.log ("Drop color = " + dropColor);
     alert (dropColor === blockColor ? "You got it!" : "Wrong!");
-    resetAll();
+    for (var i = 0; i < 10; i++) {
+      window.setTimeout (resetAll, i*100);
+    }
   };
 
   var blockStartPos = [];
